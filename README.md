@@ -1,8 +1,17 @@
 Activité Pratique N°1 - Event Driven Architecture avec KAFKA
 ---
 
-Notre Objective dans un premier temps est d’utiliser Spring Cloud Stream avec Kafka pour produire et consommer des événements.
+Notre Objective dans cet activité est d’utiliser Spring Cloud Stream avec Kafka pour: 
+- produire et consommer des événements.
+- générer en continu des événements.
+- transformer un flux d'évènements en un autre
 
+````bash
+> docker exec --interactive --tty broker kafka-console-consumer --bootstrap-server broker:9092 --topic R2
+> docker exec --interactive --tty broker kafka-console-producer --bootstrap-server broker:9092 --topic R2
+> docker exec --interactive --tty broker kafka-console-consumer --bootstrap-server broker:9092 --topic T4 --property print.key=true --property print.value=true --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+> docker exec --interactive --tty broker kafka-topics --bootstrap-server broker:9092 --list
+````
 ## 1. Creation d'un Producer KAFKA via un Rest Controler et d'un Producer KAFKA
 - ### La structure de l'application:
 ![img.png](img.png)
