@@ -56,8 +56,14 @@ public class PageEventController {
         return (stream)->
                 stream
                         .filter((k,v)->v.duration()>100)
-                        .map((k,v)->new KeyValue<>(v.name(), v.duration()))
-                        ;
+                        .map((k,v)->new KeyValue<>(v.name(), 0L))
+                        .groupByKey(Grouped.with(Serdes.String(), Serdes.Long()))
+                        .windowedBy(TimeWindows.of(Duration.ofSeconds(5)))
+                        //.aggregate(()->0.0, (k,v,total)->total+v, Materialized.as("total-store"))
+                        .count(Materialized.as("count-store"))
+                        .toStream()
+                        .map((k,v)->new KeyValue<>(k.key(), v))
+                ;
 
     }
 }
