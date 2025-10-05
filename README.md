@@ -6,15 +6,9 @@ Notre Objective dans cette activité est d’utiliser Spring Cloud Stream avec K
 - générer en continu des événements.
 - transformer un flux d'évènements en un autre
 
-````bash
-> docker exec --interactive --tty broker kafka-console-consumer --bootstrap-server broker:9092 --topic R2
-> docker exec --interactive --tty broker kafka-console-producer --bootstrap-server broker:9092 --topic R2
-> docker exec --interactive --tty broker kafka-console-consumer --bootstrap-server broker:9092 --topic T4 --property print.key=true --property print.value=true --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
-> docker exec --interactive --tty broker kafka-topics --bootstrap-server broker:9092 --list
-````
 ## 1. Producer KAFKA via un Rest Controller et d'un Consumer KAFKA
 - ### La structure de l'application:
-![img.png](img.png)
+![img.png](imgs/img.png)
 - ### **Classe `PageEventController`**
 
 ```java
@@ -151,7 +145,7 @@ Pour vérifier, lancez un consumer KAFKA
 ```bash
 docker exec --interactive --tty broker kafka-console-consumer --bootstrap-server broker:9092 --topic T3
 ```
-![img_1.png](img_1.png)
+![img_1.png](imgs/img_1.png)
 ---
 ## 4. Stream KAFKA
 Un Stream Kafka permet de transformer un flux d’événements en un autre
@@ -193,4 +187,5 @@ Pour vérifier, lancez un consumer KAFKA
 docker exec --interactive --tty broker kafka-console-consumer --bootstrap-server broker:9092 --topic T4 --property print.key=true --property print.value=true --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
 
 ```
-![img_2.png](img_2.png)
+![img_2.png](imgs/img_2.png)
+
